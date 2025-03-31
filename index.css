@@ -1,0 +1,25 @@
+@font-face {
+	font-family: "Perfect DOS VGA 437";
+	src: url("./perfect_DOS_VGA_437.ttf") format("truetype");
+}
+
+body {
+	background-color: black;
+}
+
+
+p {
+	font-family: "Perfect DOS VGA 437";
+	font-size: 16pt;
+	color: #0f0;
+}
+
+
+input {
+	font-family: "Perfect DOS VGA 437";
+	font-size: 16pt;
+	color: #0f0;
+	background-color: black;
+	width: 70%;
+	outline: none;
+}
