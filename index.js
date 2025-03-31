@@ -17,11 +17,11 @@ Welcome, employee! Please input a valid userid to contine.
 
 /* state functions */
 
-function loginState(userInput, displayElement, currentState) {
-	console.log("received userid " + userInput);
-	if (userInput === "jlinmann") {
+function loginState(globalState, displayElement) {
+	console.log("received userid " + globalState["userInput"]);
+	if (globalState["userInput"] === "jlinmann") {
 		displayElement.innerText = loginScreen.concat("\nUsername: jlinmann\nPlease enter the passoword for this user:");
-		currentState += 1;
+		globalState["currentState"] += 1;
 	} else {
 		displayElement.innerText = loginScreen.concat("\n", "Invalid userid. Please try again.");
 	}
@@ -29,14 +29,25 @@ function loginState(userInput, displayElement, currentState) {
 
 
 
-function passwordState(userInput, displayElement, currentState) {
+function passwordState(globalState, displayElement) {
+	console.log("received password " + globalState["userInput"]);
+	if (globalState["userInput"] === "password") {
+		displayElement.innerText = "Logging in...";
+	} else {
+		displayElement.innerText = loginScreen.concat("\n", "Invalid userid and password combination. Please try again.");
+		globalState["currentState"] -= 1;
+	}
 }
 
 
 const states = [
-	loginState
+	loginState,
+	passwordState
 ];
-var currentState = 0;
+const globalState = {
+	"currentState": 0,
+	"userInput": ""
+}
 
 
 
@@ -53,14 +64,16 @@ function updateHeader() {
 
 
 function onCommandEntered() {
-	states[currentState](userInputElement.value, displayElement, currentState);
+	states[globalState["currentState"]](globalState, displayElement);
 
 	userInputElement.value = "";
+	globalState["userInput"] = "";
 }
 
 
 addEventListener("keydown", (event) => {
 	if (event.keyCode === ENTER_KEY_CODE) {
+		globalState["userInput"] = userInputElement.value;
 		onCommandEntered();
 	}
 });
