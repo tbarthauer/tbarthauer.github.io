@@ -6,6 +6,10 @@ const optionsListElement = document.getElementById("optionsList");
 const fileTextElement = document.getElementById("fileText");
 // const userInputElement = document.getElementById("userinput");
 
+const defaultTextColor = "#0f0";
+const alarmTextColor = "#f00";
+var currentTextColor = defaultTextColor;
+document.body.style.color = currentTextColor;
 
 /* Text literals */
 const email_1 = `FROM: Sally D.
@@ -233,19 +237,21 @@ function enterSelection() {
 				+ String(date.getHours()).padStart(2, "0") + ":"
 				+ String(date.getMinutes()).padStart(2, "0") + ":"
 				+ String(date.getSeconds()).padStart(2, "0") + "]: "
-				+ subjectLines[i];
+				+ subjectLines[options.length - 2];
 		option.style.display = "block";
 	}
 
-	if (openedEmails >= options.length - 2) {
+	if (openedEmails >= options.length - 3) {
 		receivedEmails += 1;
+		//currentTextColor = alarmTextColor
+		//document.body.style.color = currentTextColor;
 		option = document.getElementById("newEmailB");
 		const date = new Date();
 		option.innerText = "[NEW] ["
 				+ String(date.getHours()).padStart(2, "0") + ":"
 				+ String(date.getMinutes()).padStart(2, "0") + ":"
 				+ String(date.getSeconds()).padStart(2, "0") + "]: "
-				+ subjectLines[i];
+				+ subjectLines[options.length - 1];
 		option.style.display = "block";
 	}
 
@@ -273,12 +279,12 @@ function goBack() {
 
 function selectOption(index) {
 	if (index >= 0 && index < receivedEmails) {
-		options[selection].style.color = "#0f0";
+		options[selection].style.color = currentTextColor;
 		options[selection].style.background = "#000";
 
 		selection = index;
 		options[selection].style.color = "#000";
-		options[selection].style.background = "#0f0";
+		options[selection].style.background = currentTextColor;
 	}
 }
 
