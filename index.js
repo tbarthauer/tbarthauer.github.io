@@ -121,22 +121,13 @@ Excited for the test tomorrow! I’m buying your whole team a beer after.
 
 All the best,
 Sally Diedre
-Department Chief, Engineering`;
+Department Chief, Engineering
+Entliv Propulstion Solutions`;
 
-const email_11 = `FROM: Frank L. Lee
-TO: All
-
-Good afternoon,
-
-Unfortunately, there was an accident during testing today. All company buildings will close starting at 4:00 p.m. Do not talk to press or police. More information to come.
-
-Sincerely,
-Frank L. Lee
-Chief Operating Officer
-Entliv Propulsion Solutions`;
-
-const email_12 = `FROM: amarkus6713@easycom.mail
+const email_11 = `FROM: amarkus6713@easycom.mail
 TO: John L.
+
+I forgot to attach the file. Don't go to the test.
 
 [Attached file]
 ENCLOSED: The preliminary safety report for the Mark VII Vehicle Test Action
@@ -150,6 +141,28 @@ TEST OPERATOR #1: Full body burns, loss of vision and hearing, result fatal.
 TEST OPERATOR #2: Overpressure damage separating arteries from the heart wall, result fatal.
 TEST OPERATOR #3: Head severed by steel fragment from dorsal turbopump, severe burns, result fatal.`;
 
+const email_12 = `FROM: Frank L. Lee
+TO: All
+
+Good afternoon,
+
+Unfortunately, there was an accident during testing today. All company buildings will close within the hour. Do not talk to press or police. More information to come.
+
+Sincerely,
+Frank L. Lee
+Chief Operating Officer
+Entliv Propulsion Solutions`;
+
+
+const email_13 = `FROM: helenlinmann@easycom.mail
+TO: John L.
+
+Can you pick up the kids on your way home tonight? I need to stay late.
+
+Love,
+Helen`;
+
+
 const emails = [
 	email_1,
 	email_2,
@@ -162,7 +175,8 @@ const emails = [
 	email_9,
 	email_10,
 	email_11,
-	email_12
+	email_12,
+	email_13
 ];
 
 
@@ -190,8 +204,9 @@ const subjectLines = [
 	"Here’s the file. Don’t...",
 	"Forget your password again? ...",
 	"Excited for the test! Beer!",
+	"Forgot to attach the file ...",
 	"Closing early today",
-	"[Attached file] ..."
+	"Can you pick up the kids ..."
 ];
 const subjectDateOffsets = [6, 6, 5, 4, 2, 2, 2, 1, 1, 1, 0, 0];
 
@@ -219,6 +234,12 @@ function setSubjectLines() {
 		*/
 		if (i === 8) {
 			subjectLine = "[DRAFT] " + subjectLine;
+		} else if (i === 10) {
+			subjectLine = "[NEW] ["
+				+ String(date.getHours() - 2).padStart(2, "0") + ":"
+				+ String(date.getMinutes()).padStart(2, "0") + ":"
+				+ String(date.getSeconds()).padStart(2, "0") + "]: "
+				+ subjectLines[i];
 		}
 
 		options[i].innerText = subjectLine;
@@ -228,6 +249,10 @@ function setSubjectLines() {
 
 function enterSelection() {
 	openedEmails += 1;
+
+	if (openedEmails > 0) {
+		document.getElementById("inactivityNotice").style.display = "none";
+	}
 
 	if (openedEmails === 6) {
 		receivedEmails += 1;
@@ -241,7 +266,7 @@ function enterSelection() {
 		option.style.display = "block";
 	}
 
-	if (openedEmails >= options.length - 3) {
+	if (openedEmails >= options.length - 1) {
 		receivedEmails += 1;
 		//currentTextColor = alarmTextColor
 		//document.body.style.color = currentTextColor;
