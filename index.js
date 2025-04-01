@@ -24,7 +24,7 @@ Also, happy birthday! One of your department managers told me it was your birthd
 All the best,
 Sally Diedre
 Department Chief, Engineering
-Entliv Propulsion Solutions`;
+Ballast Propulsion Solutions`;
 
 const email_2 = `FROM: John L.
 TO: Sally D.
@@ -36,7 +36,7 @@ As for the regulator, there’s no big rush. We still haven’t cleaned up from 
 Peace,
 John Linmann
 Department Chief, Research & Development
-Entliv Propulsion Solutions`;
+Ballast Propulsion Solutions`;
 
 const email_3 = `FROM: John L.
 TO: Alex M.
@@ -48,19 +48,19 @@ Also, Helen is taking the kids up to the grandparents’ place for a few days an
 Peace,
 John Linmann
 Department Chief, Research & Development
-Entliv Propulsion Solutions`;
+Ballast Propulsion Solutions`;
 
 const email_4 = `FROM: Frank L.
 TO: All
 
 Good afternoon,
 
-Congratulations! Entliv had its best quarterly earnings report ever last week and it’s all thanks to the hard work and dedication of our employees. As a thank you, there will be free ice cream available in the lobby.
+Congratulations! Ballast had its best quarterly earnings report ever last week and it’s all thanks to the hard work and dedication of our employees. As a thank you, there will be free ice cream available in the lobby.
 
 Sincerely,
 Frank L. Lee
 Chief Operating Officer
-Entliv Propulsion Solutions`;
+Ballast Propulsion Solutions`;
 
 const email_5 = `FROM: John L.
 TO: Alex M.
@@ -70,7 +70,7 @@ Hey, Al. We missed you the other night. I’m just writing because I’ve finish
 Peace,
 John Linmann
 Department Chief, Research & Development
-Entliv Propulsion Solutions`;
+Ballast Propulsion Solutions`;
 
 const email_6 = `FROM: Sally D.
 TO: John M.
@@ -86,7 +86,7 @@ Anyway, have a great day!
 All the best,
 Sally Diedre
 Department Chief, Engineering
-Entliv Propulsion Solutions`;
+Ballast Propulsion Solutions`;
 
 const email_7 = `FROM: John L.
 TO: Sally D.
@@ -98,7 +98,7 @@ Any fun weekend plans? I’ll just be home with the kids. I’ve got to give poo
 Peace,
 John Linmann
 Department Chief, Research & Development
-Entliv Propulsion Solutions`;
+Ballast Propulsion Solutions`;
 
 const email_8 = `FROM: amarkus6713@easycom.mail
 TO: John L.
@@ -122,7 +122,7 @@ Excited for the test tomorrow! I’m buying your whole team a beer after.
 All the best,
 Sally Diedre
 Department Chief, Engineering
-Entliv Propulstion Solutions`;
+Ballast Propulstion Solutions`;
 
 const email_11 = `FROM: amarkus6713@easycom.mail
 TO: John L.
@@ -151,7 +151,7 @@ Unfortunately, there was an accident during testing today. All company buildings
 Sincerely,
 Frank L. Lee
 Chief Operating Officer
-Entliv Propulsion Solutions`;
+Ballast Propulsion Solutions`;
 
 
 const email_13 = `FROM: helenlinmann@easycom.mail
