@@ -3,6 +3,14 @@
 	src: url("./perfect_DOS_VGA_437.ttf") format("truetype");
 }
 
+
+::selection {
+	color: #000;
+	background-color: #0f0;
+	opacity: 0.99;
+}
+
+
 body {
 	background-color: black;
 }
@@ -12,6 +20,14 @@ p {
 	font-family: "Perfect DOS VGA 437";
 	font-size: 16pt;
 	color: #0f0;
+}
+
+
+mark {
+	font-family: "Perfect DOS VGA 437";
+	font-size: 16pt;
+	color: #000;
+	background-color: #0f0;
 }
 
 
