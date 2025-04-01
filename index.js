@@ -31,7 +31,7 @@ TO: Sally D.
 
 Thanks, Sally. No breaks for me, unfortunately, but Helen took me out to dinner, so not all is wrong with the world. I’ve never been one to care much about my birthday. Not since I was a kid. Age just never felt that important, you know?
 
-As for the regulator, there’s no big rush. We still haven’t cleaned up from Thursday down here.
+As for the regulator, there’s no big rush. We still haven’t cleaned up from last Thursday down here.
 
 Peace,
 John Linmann
@@ -55,7 +55,7 @@ TO: All
 
 Good afternoon,
 
-Congratulations! Endliv had its best quarterly earnings report ever last week and it’s all thanks to the hard work and dedication of our employees. As a thank you, there will be free ice cream available in the lobby.
+Congratulations! Entliv had its best quarterly earnings report ever last week and it’s all thanks to the hard work and dedication of our employees. As a thank you, there will be free ice cream available in the lobby.
 
 Sincerely,
 Frank L. Lee
