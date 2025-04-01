@@ -266,7 +266,7 @@ function enterSelection() {
 		option.style.display = "block";
 	}
 
-	if (openedEmails >= options.length - 1) {
+	if (openedEmails === options.length - 1) {
 		receivedEmails += 1;
 		//currentTextColor = alarmTextColor
 		//document.body.style.color = currentTextColor;
