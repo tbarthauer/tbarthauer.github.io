@@ -1,3 +1,5 @@
+const isActive = false;
+
 const ENTER_KEY_CODE = 13;
 
 const headerElement = document.getElementById("header");
@@ -9,6 +11,9 @@ const fileTextElement = document.getElementById("fileText");
 const defaultTextColor = "#0f0";
 const alarmTextColor = "#f00";
 var currentTextColor = defaultTextColor;
+if (!isActive) {
+	currentTextColor = alarmTextColor;
+}
 document.body.style.color = currentTextColor;
 
 /* Text literals */
@@ -324,27 +329,32 @@ function moveSelectDown() {
 }
 
 
-addEventListener("keydown", (event) => {
-	if (event.keyCode === ENTER_KEY_CODE) {
-		if (inFile) {
-			goBack();
-		} else {
-			enterSelection();
+if (isActive) {
+	document.getElementById("activeBody").style.display = "block";
+
+	addEventListener("keydown", (event) => {
+		if (event.keyCode === ENTER_KEY_CODE) {
+			if (inFile) {
+				goBack();
+			} else {
+				enterSelection();
+			}
 		}
-	}
-});
+	});
 
 
-addEventListener("keydown", (event) => {
-	if (event.keyCode === 38) {
-		event.preventDefault();
-		moveSelectUp();
-	} else if (event.keyCode === 40) {
-		event.preventDefault();
-		moveSelectDown();
-	}
-})
+	addEventListener("keydown", (event) => {
+		if (event.keyCode === 38) {
+			event.preventDefault();
+			moveSelectUp();
+		} else if (event.keyCode === 40) {
+			event.preventDefault();
+			moveSelectDown();
+		}
+	});
 
-
-setSubjectLines();
-selectOption(0);
+	setSubjectLines();
+	selectOption(0);
+} else {
+	document.getElementById("inactiveNotice").style.display = "block";
+}
