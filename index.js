@@ -4,6 +4,7 @@ const ENTER_KEY_CODE = 13;
 
 const root = document.querySelector(":root");
 const alarm_sound = document.getElementById("alarm");
+alarm_sound.load();
 const headerElement = document.getElementById("header");
 const displayElement = document.getElementById("display");
 const optionsListElement = document.getElementById("optionsList");
@@ -208,8 +209,6 @@ function updateHeader() {
 
 
 function activateAlarm() {
-	currentTextColor = alarmTextColor;
-	root.style.setProperty("--theme-color", currentTextColor);
 	alarm_sound.play();
 }
 
@@ -351,6 +350,12 @@ function moveSelectUp() {
 function moveSelectDown() {
 	selectOption(selection + 1);
 }
+
+
+alarm_sound.addEventListener("play", (event) => {
+	currentTextColor = alarmTextColor;
+	root.style.setProperty("--theme-color", currentTextColor);
+});
 
 
 alarm_sound.addEventListener("ended", (event) => {
