@@ -324,6 +324,11 @@ function enterSelection() {
 
 
 function goBack() {
+	for (var i = 0; i < options.length; i++) {
+		options[i].style.color = currentTextColor;
+	}
+	options[selection].style.color = "#000";
+	options[selection].style.background = currentTextColor;
 	optionsListElement.style.display = "block";
 	fileTextElement.style.display = "none";
 	inFile = false;
