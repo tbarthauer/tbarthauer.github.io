@@ -308,7 +308,7 @@ function enterSelection() {
 	if (selection < emails.length) {
 		document.getElementById("fileTextBody").innerText = emails[selection];
 		if (selection === emails.length - 1) {
-			setTimeout(activateAlarm, 1000);
+			setTimeout(activateAlarm, 3000);
 		}
 	}
 
