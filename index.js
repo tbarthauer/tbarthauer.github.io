@@ -1,7 +1,9 @@
-const isActive = false;
+var isActive = true;
 
 const ENTER_KEY_CODE = 13;
 
+const root = document.querySelector(":root");
+const alarm_sound = document.getElementById("alarm");
 const headerElement = document.getElementById("header");
 const displayElement = document.getElementById("display");
 const optionsListElement = document.getElementById("optionsList");
@@ -11,10 +13,6 @@ const fileTextElement = document.getElementById("fileText");
 const defaultTextColor = "#0f0";
 const alarmTextColor = "#f00";
 var currentTextColor = defaultTextColor;
-if (!isActive) {
-	currentTextColor = alarmTextColor;
-}
-document.body.style.color = currentTextColor;
 
 /* Text literals */
 const email_1 = `FROM: Sally D.
@@ -105,21 +103,7 @@ John Linmann
 Department Chief, Research & Development
 Ballast Propulsion Solutions`;
 
-const email_8 = `FROM: amarkus6713@easycom.mail
-TO: John L.
-
-Here’s the file. Don’t do the test.
-
--A`;
-
-const email_9 = `FROM: John L.
-TO: amarkus6713@easycom.mail
-
-Forget your password again? Lol.
-
-And did you forget to attach the file? I’m not seeing it.`;
-
-const email_10 = `FROM: Sally D.
+const email_8 = `FROM: Sally D.
 TO: John L.
 
 Excited for the test tomorrow! I’m buying your whole team a beer after.
@@ -127,9 +111,34 @@ Excited for the test tomorrow! I’m buying your whole team a beer after.
 All the best,
 Sally Diedre
 Department Chief, Engineering
-Ballast Propulstion Solutions`;
+Ballast Propulsion Solutions`;
 
-const email_11 = `FROM: amarkus6713@easycom.mail
+const email_9 = `FROM John L.
+
+Thanks, Sally. And yes, the test is early. But I’m taking the rest of today off work. If you guys are free for dinner, we could go out then?
+
+Bring Brian, too. Helen and I haven’t seen him in forever.
+
+Peace,
+John Linmann
+Department Chief, Research & Development
+Ballast Propulsion Solutions`;
+
+const email_10 = `FROM: amarkus6713@easycom.mail
+TO: John L.
+
+Here’s the file. Don’t do the test.
+
+-A`;
+
+const email_11 = `FROM: John L.
+TO: amarkus6713@easycom.mail
+
+Forget your password again? Lol.
+
+And did you forget to attach the file? I’m not seeing it.`
+
+const email_12 = `FROM: amarkus6713@easycom.mail
 TO: John L.
 
 I forgot to attach the file. Don't go to the test.
@@ -146,7 +155,7 @@ TEST OPERATOR #1: Full body burns, loss of vision and hearing, result fatal.
 TEST OPERATOR #2: Overpressure damage separating arteries from the heart wall, result fatal.
 TEST OPERATOR #3: Head severed by steel fragment from dorsal turbopump, severe burns, result fatal.`;
 
-const email_12 = `FROM: Frank L. Lee
+const email_13 = `FROM: Frank L. Lee
 TO: All
 
 Good afternoon,
@@ -158,8 +167,7 @@ Frank L. Lee
 Chief Operating Officer
 Ballast Propulsion Solutions`;
 
-
-const email_13 = `FROM: helenlinmann@easycom.mail
+const email_14 = `FROM: helenlinmann@easycom.mail
 TO: John L.
 
 Can you pick up the kids on your way home tonight? I need to stay late.
@@ -181,11 +189,12 @@ const emails = [
 	email_10,
 	email_11,
 	email_12,
-	email_13
+	email_13,
+	email_14
 ];
 
 
-const headerUpdateInterval = setInterval(updateHeader, 1000);
+const headerUpdateInterval = setInterval(updateHeader, 2000);
 
 
 function updateHeader() {
@@ -198,6 +207,13 @@ function updateHeader() {
 }
 
 
+function activateAlarm() {
+	currentTextColor = alarmTextColor;
+	root.style.setProperty("--theme-color", currentTextColor);
+	alarm_sound.play();
+}
+
+
 const subjectLines = [
 	"New regulator & best birthday wishes",
 	"Thanks for the update",
@@ -206,14 +222,15 @@ const subjectLines = [
 	"Update on the trial? Please?",
 	"Regulator delays",
 	"No worries",
+	"Excited for the test! Beer!",
+	"Dinner?",
 	"Here’s the file. Don’t...",
 	"Forget your password again? ...",
-	"Excited for the test! Beer!",
 	"Forgot to attach the file ...",
 	"Closing early today",
 	"Can you pick up the kids ..."
 ];
-const subjectDateOffsets = [6, 6, 5, 4, 2, 2, 2, 1, 1, 1, 0, 0];
+const subjectDateOffsets = [6, 6, 5, 4, 2, 2, 2, 1, 1, 1, 0, 0, 0];
 
 
 const options = document.getElementsByClassName("option");
@@ -237,9 +254,13 @@ function setSubjectLines() {
 			+ date.getFullYear() + "] "
 			+ subjectLines[i];
 		*/
-		if (i === 8) {
-			subjectLine = "[DRAFT] " + subjectLine;
-		} else if (i === 10) {
+		if (i === 10) {
+			subjectLine = "[DRAFT] ["
+				+ String(date.getHours() - 3).padStart(2, "0") + ":"
+				+ String(date.getMinutes() - 27).padStart(2, "0") + ":"
+				+ String(date.getSeconds()).padStart(2, "0") + "]: "
+				+ subjectLines[i];
+		} else if (i === 11) {
 			subjectLine = "[NEW] ["
 				+ String(date.getHours() - 2).padStart(2, "0") + ":"
 				+ String(date.getMinutes()).padStart(2, "0") + ":"
@@ -259,7 +280,7 @@ function enterSelection() {
 		document.getElementById("inactivityNotice").style.display = "none";
 	}
 
-	if (openedEmails === 6) {
+	if (openedEmails === 7) {
 		receivedEmails += 1;
 		option = document.getElementById("newEmailA");
 		const date = new Date();
@@ -287,6 +308,9 @@ function enterSelection() {
 
 	if (selection < emails.length) {
 		document.getElementById("fileTextBody").innerText = emails[selection];
+		if (selection === emails.length - 1) {
+			setTimeout(activateAlarm, 1000);
+		}
 	}
 
 	const prefix = options[selection].innerText.substring(0, 6);
@@ -329,32 +353,44 @@ function moveSelectDown() {
 }
 
 
-if (isActive) {
-	document.getElementById("activeBody").style.display = "block";
+alarm_sound.addEventListener("ended", (event) => {
+	isActive = false;
+	refreshPage();
+});
 
-	addEventListener("keydown", (event) => {
-		if (event.keyCode === ENTER_KEY_CODE) {
-			if (inFile) {
-				goBack();
-			} else {
-				enterSelection();
+
+function refreshPage() {
+	if (isActive) {
+		document.getElementById("activeBody").style.display = "block";
+
+		addEventListener("keydown", (event) => {
+			if (event.keyCode === ENTER_KEY_CODE) {
+				if (inFile) {
+					goBack();
+				} else {
+					enterSelection();
+				}
 			}
-		}
-	});
+		});
 
 
-	addEventListener("keydown", (event) => {
-		if (event.keyCode === 38) {
-			event.preventDefault();
-			moveSelectUp();
-		} else if (event.keyCode === 40) {
-			event.preventDefault();
-			moveSelectDown();
-		}
-	});
+		addEventListener("keydown", (event) => {
+			if (event.keyCode === 38) {
+				event.preventDefault();
+				moveSelectUp();
+			} else if (event.keyCode === 40) {
+				event.preventDefault();
+				moveSelectDown();
+			}
+		});
 
-	setSubjectLines();
-	selectOption(0);
-} else {
-	document.getElementById("inactiveNotice").style.display = "block";
+		setSubjectLines();
+		selectOption(0);
+	} else {
+		currentTextColor = alarmTextColor;
+		document.getElementById("activeBody").style.display = "none";
+		document.getElementById("inactiveNotice").style.display = "block";
+	}
+	root.style.setProperty("--theme-color", currentTextColor);
 }
+refreshPage();

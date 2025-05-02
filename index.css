@@ -10,14 +10,25 @@
 }
 
 
+:root {
+	--theme-color: #0f0;
+}
+
 body {
 	background-color: black;
+	color: var(--theme-color);
+}
+
+
+.option {
+	color: var(--theme-color);
 }
 
 
 p {
 	font-family: "Perfect DOS VGA 437";
 	font-size: 16pt;
+	color: var(--theme-color);
 }
 
 
@@ -25,7 +36,7 @@ mark {
 	font-family: "Perfect DOS VGA 437";
 	font-size: 16pt;
 	color: #000;
-	background-color: #0f0;
+	background-color: var(--theme-color);
 }
 
 
